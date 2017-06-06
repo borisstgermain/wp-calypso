@@ -58,9 +58,9 @@ export const getPaymentMethods = ( state, siteId = getSelectedSiteId( state ) ) 
  * @param {Number} siteId wpcom site id
  * @return {Array} Array of Payment Methods of requested type
  */
-export function getPaymentMethodsGroup( state, type, siteId = getSelectedSiteId( state ) ) {
+export const getPaymentMethodsGroup = ( state, type, siteId = getSelectedSiteId( state ) ) => {
 	return filter( getPaymentMethods( state, siteId ), { methodType: type } );
-}
+};
 
 /**
  * @param {Object} state Whole Redux state tree

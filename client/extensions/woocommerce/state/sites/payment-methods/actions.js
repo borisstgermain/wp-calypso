@@ -57,14 +57,12 @@ export const paymentMethodSaveSuccess = ( siteId, data ) => {
 	const paymentMethod = { ...data, ...getPaymentMethodDetails( data.id ) };
 	return {
 		type: WOOCOMMERCE_API_PAYMENT_METHOD_SAVE_SUCCESS,
-		payload: {
-			siteId,
-			data: paymentMethod,
-		},
+		siteId,
+		data: paymentMethod,
 	};
 };
 
-export const paymentMethodSave = ( siteId, method ) => ( dispatch, getState ) => {
+export const paymentMethodSave = ( siteId, method, successAction = null, failureAction = null ) => ( dispatch, getState ) => {
 	const state = getState();
 	if ( ! siteId ) {
 		siteId = getSelectedSiteId( state );
@@ -85,8 +83,14 @@ export const paymentMethodSave = ( siteId, method ) => ( dispatch, getState ) =>
 	return request( siteId ).put( `payment_gateways/${ method.id }`, body )
 		.then( ( data ) => {
 			dispatch( paymentMethodSaveSuccess( siteId, data ) );
+			if ( successAction ) {
+				dispatch( successAction( data ) );
+			}
 		} )
 		.catch( err => {
 			dispatch( setError( siteId, getAction, err ) );
+			if ( failureAction ) {
+				dispatch( failureAction( err ) );
+			}
 		} );
 };

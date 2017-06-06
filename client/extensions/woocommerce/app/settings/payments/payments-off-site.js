@@ -14,6 +14,7 @@ import {
 	closeEditingPaymentMethod,
 	openPaymentMethodForEdit
 } from 'woocommerce/state/ui/payments/methods/actions';
+import { errorNotice, successNotice } from 'state/notices/actions';
 import ExtendedHeader from 'woocommerce/components/extended-header';
 import { fetchPaymentMethods, paymentMethodSave } from 'woocommerce/state/sites/payment-methods/actions';
 import { getCurrentlyEditingPaymentMethod, getPaymentMethodsGroup } from 'woocommerce/state/ui/payments/methods/selectors';
@@ -55,8 +56,23 @@ class SettingsPaymentsOffSite extends Component {
 	}
 
 	onSave = ( method ) => {
-		const { siteId } = this.props;
-		this.props.paymentMethodSave( siteId, method );
+		const { siteId, translate } = this.props;
+
+		const successAction = () => {
+			this.props.closeEditingPaymentMethod( siteId, method.id );
+			return successNotice(
+				translate( 'Payment method successfully saved.' ),
+				{ duration: 4000 }
+			);
+		};
+
+		const errorAction = () => {
+			return errorNotice(
+				translate( 'There was a problem saving the payment method. Please try again.' )
+			);
+		};
+
+		this.props.paymentMethodSave( siteId, method, successAction, errorAction );
 	}
 
 	renderMethodItem = ( method ) => {
