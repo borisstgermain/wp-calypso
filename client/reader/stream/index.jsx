@@ -48,6 +48,7 @@ const HEADER_OFFSET_TOP = 46;
 const MIN_DISTANCE_BETWEEN_RECS = 4; // page size is 7, so one in the middle of every page and one on page boundries, sometimes
 const MAX_DISTANCE_BETWEEN_RECS = 30;
 
+
 function getDistanceBetweenRecs() {
 	// the distance between recs changes based on how many subscriptions the user has.
 	// We cap it at MAX_DISTANCE_BETWEEN_RECS.
