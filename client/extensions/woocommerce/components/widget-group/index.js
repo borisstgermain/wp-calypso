@@ -26,7 +26,7 @@ class WidgetGroup extends Component {
 			<div className="widget-group__row-container" key={ rowIndex }>
 				{ children.map( ( child, index ) => {
 					return React.cloneElement( child, {
-						className: classNames( child.props.className, 'widget-group__row-item' ),
+						className: classNames( child.props.className, 'widget-group__row-item', 'card' ),
 						key: index,
 					} );
 				} ) }
