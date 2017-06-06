@@ -7,7 +7,7 @@ import { get, filter, find, findIndex, remove } from 'lodash';
  * Internal dependencies
  */
 import { getSelectedSiteId } from 'state/ui/selectors';
-import { getApiPaymentMethods, arePaymentMethodsLoaded } from '../../../wc-api/payment-methods/selectors';
+import { getApiPaymentMethods, arePaymentMethodsLoaded } from 'woocommerce/state/sites/payment-methods/selectors';
 
 const getPaymentMethodsEdits = ( state, siteId ) => {
 	return get( state, [ 'extensions', 'woocommerce', 'ui', 'payments', siteId, 'methods' ] );
