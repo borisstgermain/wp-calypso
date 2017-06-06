@@ -5,6 +5,7 @@ import { areOrdersLoaded, areOrdersLoading } from './selectors';
 import createOrderObject from './assembler';
 import { getSelectedSiteId } from 'state/ui/selectors';
 import request from '../request';
+import { setError } from '../status/wc-api/actions';
 import {
 	WOOCOMMERCE_API_FETCH_ORDERS,
 	WOOCOMMERCE_API_FETCH_ORDERS_FAILURE,
@@ -20,10 +21,11 @@ export const fetchOrders = ( siteId ) => ( dispatch, getState ) => {
 		return;
 	}
 
-	dispatch( {
+	const fetchAction = {
 		type: WOOCOMMERCE_API_FETCH_ORDERS,
 		siteId,
-	} );
+	};
+	dispatch( fetchAction );
 
 	return request( siteId ).get( 'orders' ).then( ( data ) => {
 		dispatch( {
@@ -32,6 +34,7 @@ export const fetchOrders = ( siteId ) => ( dispatch, getState ) => {
 			siteId,
 		} );
 	} ).catch( error => {
+		dispatch( setError( siteId, fetchAction, error ) );
 		dispatch( {
 			type: WOOCOMMERCE_API_FETCH_ORDERS_FAILURE,
 			siteId,
