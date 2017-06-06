@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import { findIndex, reject } from 'lodash';
+import { find, findIndex, isNil, reject } from 'lodash';
 
 /**
  * Internal dependencies
@@ -57,9 +57,16 @@ reducer[ WOOCOMMERCE_SHIPPING_ZONE_METHOD_REMOVE ] = ( state, { payload: { id } 
 };
 
 reducer[ WOOCOMMERCE_SHIPPING_ZONE_METHOD_CHANGE_TYPE ] = ( state, action ) => {
+	const bucket = getBucket( { id: action.payload.id } );
+	const method = find( state[ bucket ], { id: action.payload.id } );
+	let originalId = action.payload.id;
+	if ( method && ! isNil( method._originalId ) ) {
+		originalId = method._originalId;
+	}
+
 	state = reducer[ WOOCOMMERCE_SHIPPING_ZONE_METHOD_REMOVE ]( state, action );
 	state = reducer[ WOOCOMMERCE_SHIPPING_ZONE_METHOD_ADD ]( state, action );
-	state.creates[ state.creates.length - 1 ]._originalId = action.payload.id;
+	state.creates[ state.creates.length - 1 ]._originalId = originalId;
 	return state;
 };
 
