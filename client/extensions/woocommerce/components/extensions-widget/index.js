@@ -10,6 +10,7 @@ import React, { PropTypes } from 'react';
 const ExtensionsWidget = ( { className } ) => {
 	return (
 		<div className={ className } >
+			{ 'Extensions go here' }
 		</div>
 	);
 };

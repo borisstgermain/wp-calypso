@@ -7,10 +7,12 @@ import React, { PropTypes } from 'react';
  * Internal dependencies
  */
 
-const ReadingWidget = ( { className, title } ) => {
+const ReadingWidget = ( { className, text, title } ) => {
 	return (
 		<div className={ className } >
-			{ title }
+			<h2>{ title }</h2>
+			<p>{ text }</p>
+			<p>{ 'Three articles go here' }</p>
 		</div>
 	);
 };

@@ -327,7 +327,7 @@ export class MySitesSidebar extends Component {
 		return (
 			showStoreLink &&
 			<SidebarItem
-				label={ translate( 'Store' ) }
+				label={ translate( 'Store (BETA)' ) }
 				link={ storeLink }
 				onNavigate={ this.onNavigate }
 				icon="cart" >
