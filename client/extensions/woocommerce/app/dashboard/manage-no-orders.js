@@ -77,13 +77,13 @@ class ManageNoOrders extends Component {
 				<p>
 					{
 						translate( 'Your store is live. You may want to double check' +
-							'your tax, shipping and payment configuration are set up correctly.' )
+							' your tax, shipping and payment configuration are set up correctly.' )
 					}
 				</p>
 				<p>
 					{
 						translate( 'The easiest way to do this is to view your store, add' +
-							'a product to your cart and attempt to check out using different addresses.' )
+							' a product to your cart and attempt to check out using different addresses.' )
 					}
 				</p>
 			</BasicWidget>

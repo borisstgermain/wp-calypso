@@ -1,24 +1,23 @@
 .widget-group__group-container {
 	width: 100%;
+}
 
-	.widget-group__row-container {
-		align-items: stretch;
-		display: flex;
-		margin-bottom: 16px;
-		width: 100%;
+.widget-group__group-container .widget-group__row-container {
+	align-items: stretch;
+	display: flex;
+	margin-bottom: 16px;
+	width: 100%;
+}
 
-		.widget-group__row-item {
-			border: 1px solid $gray;
-			flex: 1 0 0;
-			margin: 0 16px 0 16px;
+.widget-group__row-container .widget-group__row-item {
+	flex: 1 0 0;
+	margin: 0 16px 0 16px;
 
-			&:first-child {
-				margin-left: 0;
-			}
+	&:first-child {
+		margin-left: 0;
+	}
 
-			&:last-child {
-				margin-right: 0;
-			}
-		}
+	&:last-child {
+		margin-right: 0;
 	}
 }
