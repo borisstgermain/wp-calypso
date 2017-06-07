@@ -8,7 +8,6 @@ import { localize } from 'i18n-calypso';
  * Internal dependencies
  */
 import Button from 'components/button';
-import ExtensionsWidget from '../../components/extensions-widget';
 import { getLink } from '../../lib/nav-utils';
 import ProcessOrdersWidget from '../../components/process-orders-widget';
 import ReadingWidget from '../../components/reading-widget';
@@ -107,18 +106,6 @@ class ManageOrders extends Component {
 		);
 	}
 
-	possiblyRenderExtensionsWidget = () => {
-		// TODO - connect to display preferences in a follow-on PR
-		const { site, translate } = this.props;
-		return (
-			<ExtensionsWidget
-				className="dashboard__extensions-widget"
-				site={ site }
-				title={ translate( 'Add features to your store' ) }
-			/>
-		);
-	}
-
 	render = () => {
 		const { site, translate } = this.props;
 		return (
@@ -153,10 +140,7 @@ class ManageOrders extends Component {
 					( this.possiblyRenderTrafficWidget() }
 				</WidgetGroup>
 				{ this.possiblyRenderShareWidget() }
-				<WidgetGroup>
-					{ this.possiblyRenderReadingWidget() }
-					{ this.possiblyRenderExtensionsWidget() }
-				</WidgetGroup>
+				{ this.possiblyRenderReadingWidget() }
 			</div>
 		);
 	}

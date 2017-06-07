@@ -2,13 +2,11 @@
  * External dependencies
  */
 import classNames from 'classnames';
-import debugFactory from 'debug';
 import React, { Component, PropTypes } from 'react';
 
 /**
  * Internal dependencies
  */
-const debug = debugFactory( 'calypso:allendav' );
 
 class WidgetGroup extends Component {
 	static propTypes = {
@@ -17,7 +15,7 @@ class WidgetGroup extends Component {
 			PropTypes.node
 		] ),
 		className: PropTypes.string,
-		maxColumns: PropTypes.string,
+		maxColumns: PropTypes.number,
 		title: PropTypes.string,
 	}
 
@@ -42,10 +40,8 @@ class WidgetGroup extends Component {
 		let rowIndex = 0;
 
 		if ( ! Array.isArray( children ) ) {
-			debug( 'in WidgetGroup renderChildren, children is a single element (not an array)' );
 			rows.push( this.renderRow( rowIndex, children ) );
 		} else {
-			debug( 'in WidgetGroup renderChildren, children is an array' );
 			if ( firstWidgetFullWidth ) {
 				rows.push( this.renderRow( rowIndex, children ) );
 				childIndex = 1;
@@ -82,12 +78,6 @@ class WidgetGroup extends Component {
 
 WidgetGroup.defaultProps = {
 	maxColumns: 2
-};
-
-WidgetGroup.propTypes = {
-	className: PropTypes.string,
-	maxColumns: React.PropTypes.number,
-	title: React.PropTypes.string,
 };
 
 export default WidgetGroup;

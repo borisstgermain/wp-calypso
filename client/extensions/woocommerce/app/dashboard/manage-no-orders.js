@@ -8,7 +8,6 @@ import { localize } from 'i18n-calypso';
  * Internal dependencies
  */
 import BasicWidget from '../../components/basic-widget';
-import ExtensionsWidget from '../../components/extensions-widget';
 import { getLink } from '../../lib/nav-utils';
 import ReadingWidget from '../../components/reading-widget';
 import ShareWidget from '../../components/share-widget';
@@ -91,13 +90,6 @@ class ManageNoOrders extends Component {
 		);
 	}
 
-	renderExtensionsWidget = () => {
-		const { site } = this.props;
-		return (
-			<ExtensionsWidget className="dashboard__extensions-widget" site={ site } />
-		);
-	}
-
 	render = () => {
 		return (
 			<div className="dashboard__manage-no-orders">
@@ -107,7 +99,6 @@ class ManageNoOrders extends Component {
 					{ this.renderExampleOrderWidget() }
 					{ this.renderViewAndTestWidget() }
 				</WidgetGroup>
-				{ this.renderExtensionsWidget() }
 			</div>
 		);
 	}
